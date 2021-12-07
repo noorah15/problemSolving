@@ -23,6 +23,13 @@ function lower(str) {
 
 const updateAnimal = (arr, callback) => {
   // Solution code here...
+
+  let newArr = [];
+  arr.forEach((item) => {
+    newArr.push(callback(item));
+  });
+
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,6 +42,20 @@ For example: 'Cat' would come before 'apple'
 
 const sortNames = (arr) => {
   // Solution code here...
+
+  let capital = [];
+  let small = [];
+  arr.forEach((item) => {
+    if (item[0] == item[0].toUpperCase()) capital.push(item);
+    else small.push(item);
+  });
+
+  capital.sort();
+  small.sort();
+  capital.push(...small);
+  console.log(capital);
+
+  return capital;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,6 +68,16 @@ HINT: Beware... JS default is "Lexical" ordering.
 
 const sortNumbers = (arr) => {
   // Solution code here...
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      }
+    }
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,6 +90,16 @@ HINT: Do it with a custom sort callback, not with using `.reverse()`. ;)
 
 const sortBackwards = (arr) => {
   // Solution code here...
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] < arr[j]) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      }
+    }
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -73,6 +114,19 @@ For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 
 const alphabetize = (arr) => {
   // Solution code here...
+  let capital = [];
+  let small = [];
+  arr.forEach((item) => {
+    if (item[0] == item[0].toUpperCase()) capital.push(item);
+    else small.push(item);
+  });
+
+  capital.sort();
+  small.sort();
+  capital.push(...small);
+  console.log(capital);
+
+  return capital;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,6 +144,17 @@ Here is an example of the input:
 
 const sortByPrice = (arr) => {
   // Solution code here...
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i].price > arr[j].price) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      }
+    }
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -102,6 +167,8 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 
 const alphabetizeBetter = (arr) => {
   // Solution code here...
+  arr.sort();
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -112,6 +179,16 @@ Write a function named sortByLength that takes in an array of strings and return
 
 const sortByLength = (arr) => {
   // Solution code here...
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i].length > arr[j].length) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      }
+    }
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -124,6 +201,16 @@ For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 
 const sortNumbersByLength = (arr) => {
   // Solution code here...
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (("" + arr[i]).length > ("" + arr[j]).length) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      }
+    }
+  }
+  return arr;
 };
 
 /*-----------------------------------------------------------------------------------------------
@@ -146,6 +233,17 @@ const people = [
 
 const sortPeople = (arr) => {
   // Solution code here...
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i].lastName > arr[j].lastName) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      }
+    }
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -160,6 +258,29 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i].lastName > arr[j].lastName) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      } else if (arr[i].lastName === arr[j].lastName) {
+        if (arr[i].firstName > arr[j].firstName) {
+          let swap = arr[i];
+          arr[i] = arr[j];
+          arr[j] = swap;
+        } else if (arr[i].age === arr[j].firstName) {
+          if (arr[i].age > arr[j].age) {
+            let swap = arr[i];
+            arr[i] = arr[j];
+            arr[j] = swap;
+          }
+        }
+      }
+    }
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -186,6 +307,17 @@ const meetings = [
 
 const sortMeetingsByDay = (arr) => {
   // Solution code here...
+
+  let arr2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let final = [];
+  for (let i = 0; i < arr2.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr2[i] === arr[j].dayOfWeek) {
+        final.push(arr[j]);
+      }
+    }
+  }
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -200,6 +332,27 @@ You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 
 const sortSchedule = (arr) => {
   // Solution code here...
+  // let arr2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  // let final = [];
+  // for (let i = 0; i < arr2.length; i++) {
+  //   for (let j = 0; j < arr.length; j++) {
+  //     if (arr2[i] === arr[j].dayOfWeek) {
+  //       final.push(arr[j]);
+  //     }
+  //   }
+  // }
+  // for (let i = 0; i < final.length; i++) {
+  //   for (let j = i + 1; j < final.length; j++) {
+  //     if (final[i].dayOfWeek === final[j].dayOfWeek) {
+  //       if (final[i].start === final[j].start && final[i].end < final[j].end) {
+  //         let swap = final[i];
+  //         final[i] = final[j];
+  //         final[j] = swap;
+  //       }
+  //     }
+  //   }
+  // }
+  // return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
