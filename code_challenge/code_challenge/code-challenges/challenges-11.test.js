@@ -13,6 +13,14 @@ You can assume that neither firstName nor lastName will be blank
 ------------------------------------------------------------------------------------------------ */
 const toLastNames = (people) => {
   // Solution code here...
+
+  let final = [];
+  for (let i = 0; i < people.length; i++) {
+    let name = people[i].firstName + " " + people[i].lastName;
+    final.push(name);
+  }
+
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -25,6 +33,8 @@ If the PIN is four numerical digits long, return true. Otherwise, return false.
 
 const validatePin = (pin) => {
   // Solution code here...
+
+  return /^\d{4}$/.test(pin);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,6 +47,8 @@ If the word is between 5 and 10 characters long, return true. Otherwise, return 
 
 const validateWord = (word) => {
   // Solution code here...
+
+  return /^[A-Za-z]{5,10}$/.test(word); // /^[A-Za-z0-9]{5,10}$/
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -49,6 +61,8 @@ If it does, return true. If not, return false.
 
 const hasNumber = (string) => {
   // Solution code here...
+
+  return /[A-Za-z](\d+)/.test(string);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -69,6 +83,12 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 
 const validateEmail = (email) => {
   // Solution code here...
+
+  return (
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com$/.test(email) ||
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.net$/.test(email) ||
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.org$/.test(email)
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -94,6 +114,7 @@ Return either true or false.
 
 const validatePhoneNumber = (phoneNumber) => {
   // Solution code here...
+  return /^[0-9()-\s]*$/.test(phoneNumber);
 };
 
 /* ------------------------------------------------------------------------------------------------
