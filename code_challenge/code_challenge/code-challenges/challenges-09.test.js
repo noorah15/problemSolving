@@ -20,6 +20,13 @@ Becomes:
 
 function transformToLis(obj) {
   // Solution code here...
+
+  let final = [];
+
+  for (let i in obj) {
+    final.push(`<li>${i}: ${obj[i]}</li>`);
+  }
+  return final;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -31,6 +38,11 @@ Write a function named addValues that, given an array of numbers as input, uses 
 
 const addValues = (arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    return acc + item;
+  }, 0);
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,6 +59,11 @@ Write a function named addPurchases that, given an array of objects as input, us
 
 const addPurchases = (arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    return acc + item.purchasePrice;
+  }, 0);
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,6 +76,11 @@ Note: You may not use the array's built-in length property.
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    return acc + 1;
+  }, 0);
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -122,6 +144,12 @@ let starWarsData = [
 
 const returnNames = (arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    acc.push(item.name);
+    return acc;
+  }, []);
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,6 +162,13 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 
 const reversedString = (str) => {
   // Solution code here...
+
+  let arr = str.split("");
+  const final = arr.reduce((acc, item) => {
+    acc.unshift(item);
+    return acc;
+  }, []);
+  return final.join("");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -187,6 +222,12 @@ const characters = [
 
 const countNumberOfChildren = (arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    if (item.children) acc += item.children.length;
+    return acc;
+  }, 0);
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -199,6 +240,12 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 
 const calculateAverage = (arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    acc += item;
+    return acc;
+  }, 0);
+  return final / arr.length;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -220,6 +267,12 @@ const isPrime = (value) => {
 
 const countPrimeNumbers = (arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    if (isPrime(item)) acc++;
+    return acc;
+  }, 0);
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -263,6 +316,12 @@ const snorlaxData = {
 
 const extractStat = (statName, arr) => {
   // Solution code here...
+
+  const final = arr.reduce((acc, item) => {
+    if (item.stat.name === statName) acc.push(item);
+    return acc;
+  }, []);
+  return final[0];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -277,6 +336,20 @@ Write a function named extractChildren that, given the array of characters from 
 
 const extractChildren = (arr) => {
   // Solution code here...
+
+  const arr2 = arr.filter((item) => {
+    return item.name.includes("a") && item.children;
+  });
+
+  const final = arr2.reduce((acc, item) => {
+    for (let i = 0; i < item.children.length; i++) {
+      acc.push(item.children[i]);
+    }
+
+    return acc;
+  }, []);
+
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------

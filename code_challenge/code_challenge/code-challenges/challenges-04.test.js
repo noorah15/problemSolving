@@ -23,6 +23,10 @@ Write a function named containsW that takes in a string. This function should us
 
 const containsW = (str) => {
   // Solution code here...
+
+  const tags = /w/g;
+
+  return str.match(tags) == null ? false : true;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -39,6 +43,9 @@ For example:
 
 const isNum = (input) => {
   // Solution code here...
+  const tags = /[0-9]/g;
+  input += "";
+  return input.match(tags) == null ? false : true;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -50,6 +57,9 @@ Write a function named containsWorld that takes in a string or number of any len
 
 const containsWorld = (input) => {
   // Solution code here...
+
+  const tags = /world/g;
+  return input.match(tags) == null ? false : true;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -62,6 +72,9 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
+  const tags = /[A-Z].*?\b/g;
+  const arr = str.match(tags);
+  return arr === null ? [] : arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -71,6 +84,15 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 const citiesAtoJ = (arr) => {
   // Solution code here...
+
+  let final = [];
+  const tags = /^[A-J](.){1,}/g;
+  arr.forEach((item) => {
+    const str = item.match(tags);
+    if (str !== null) final.push(str[0]);
+  });
+
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -87,6 +109,14 @@ Do not use the vertical bar (pipe) in your pattern.
 
 const matchMonth = (input) => {
   // Solution code here...
+  input += "";
+
+  if (
+    input.match(/^[Oo]ctober$/g) !== null ||
+    input.match(/^[Oo]ct$/g) !== null
+  )
+    return true;
+  return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -101,6 +131,18 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 
 const noPunctuation = (str) => {
   // Solution code here...
+  let final = [];
+  const arr1 = str.split(/[ ]+/);
+  arr1.forEach((item) => {
+    if (
+      item[item.length - 1] !== "!" &&
+      item[item.length - 1] !== "," &&
+      item[item.length - 1] !== "."
+    )
+      final.push(item + " ");
+  });
+
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -117,6 +159,24 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 
 let hangman = (str) => {
   // Solution code here...
+
+  let newStr = "";
+  for (let i = 0; i < str.length; i++)
+    if (
+      str[i] !== "a" &&
+      str[i] !== "o" &&
+      str[i] !== "u" &&
+      str[i] !== "i" &&
+      str[i] !== "e" &&
+      str[i] !== "A" &&
+      str[i] !== "O" &&
+      str[i] !== "U" &&
+      str[i] !== "I" &&
+      str[i] !== "E"
+    )
+      newStr += str[i];
+    else newStr += "_";
+  return newStr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,6 +194,15 @@ const seashells =
 
 const findShells = (str) => {
   // Solution code here...
+  const arr = str.match(/[A-Za-z].*?\b/g);
+
+  let final = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (/ells/.test(arr[i])) final.push(arr[i]);
+  }
+
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------

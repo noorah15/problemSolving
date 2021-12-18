@@ -167,7 +167,15 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 
 const alphabetizeBetter = (arr) => {
   // Solution code here...
-  arr.sort();
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i].toLowerCase() > arr[j].toLowerCase()) {
+        let swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+      }
+    }
+  }
   return arr;
 };
 
@@ -332,27 +340,31 @@ You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 
 const sortSchedule = (arr) => {
   // Solution code here...
-  // let arr2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-  // let final = [];
-  // for (let i = 0; i < arr2.length; i++) {
-  //   for (let j = 0; j < arr.length; j++) {
-  //     if (arr2[i] === arr[j].dayOfWeek) {
-  //       final.push(arr[j]);
-  //     }
-  //   }
-  // }
-  // for (let i = 0; i < final.length; i++) {
-  //   for (let j = i + 1; j < final.length; j++) {
-  //     if (final[i].dayOfWeek === final[j].dayOfWeek) {
-  //       if (final[i].start === final[j].start && final[i].end < final[j].end) {
-  //         let swap = final[i];
-  //         final[i] = final[j];
-  //         final[j] = swap;
-  //       }
-  //     }
-  //   }
-  // }
-  // return final;
+  let arr2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let final = [];
+  for (let i = 0; i < arr2.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr2[i] === arr[j].dayOfWeek) {
+        final.push(arr[j]);
+      }
+    }
+  }
+  for (let i = 0; i < final.length; i++) {
+    for (let j = i + 1; j < final.length; j++) {
+      if (final[i].dayOfWeek === final[j].dayOfWeek) {
+        if (final[i].start === final[j].start && final[i].end > final[j].end) {
+          let swap = final[i];
+          final[i] = final[j];
+          final[j] = swap;
+        } else if (final[i].start > final[j].start) {
+          let swap = final[i];
+          final[i] = final[j];
+          final[j] = swap;
+        }
+      }
+    }
+  }
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------

@@ -83,12 +83,19 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 
 const validateEmail = (email) => {
   // Solution code here...
+  let final = email.match(/\.@/g);
 
-  return (
+  if (final !== null) return false;
+  if (
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com$/.test(email) ||
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.net$/.test(email) ||
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.org$/.test(email)
-  );
+  ) {
+    if (email.match(/\./g).length > 2) return false;
+
+    return true;
+  }
+  return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,8 +120,19 @@ Return either true or false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePhoneNumber = (phoneNumber) => {
-  // Solution code here...
-  return /^[0-9()-\s]*$/.test(phoneNumber);
+  // Solution code here... /^[0-9()-\s]*$/.match(phoneNumber);
+  if (!phoneNumber.match(/[a-z]/g)) {
+    if (
+      (phoneNumber.match(/[()]/g) === null ||
+        phoneNumber.match(/[()]/g).length === 2) &&
+      phoneNumber.match(/^(.*)\-$/g) === null &&
+      phoneNumber.match(/--/g) === null &&
+      phoneNumber.match(/[0-9]/g).length === 10
+    )
+      return true;
+    return false;
+  }
+  return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -128,6 +146,22 @@ findTagNames(['<div><h1>Hello, world!</h1></div>', '<p>Welcome to my site</p>'])
 
 const findTagNames = (elements) => {
   // Solution code here...
+  let final = [];
+  const tags = /\/(.){1,}>/g;
+
+  for (let i = 0; i < elements.length; i++) {
+    const arr = elements[i].match(tags);
+    let str = "";
+    for (let j = 0; j < arr[0].length; j++) {
+      if (arr[0][j] !== ">" && arr[0][j] !== "<") str += arr[0][j];
+      else {
+        if (str !== "") final.push(str);
+        str = "";
+      }
+    }
+  }
+
+  return final;
 };
 
 /* ------------------------------------------------------------------------------------------------
